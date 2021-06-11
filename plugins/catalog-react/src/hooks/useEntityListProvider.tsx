@@ -32,6 +32,7 @@ import {
   EntityLifecycleFilter,
   EntityOwnerFilter,
   EntityTagFilter,
+  EntityTextFilter,
   EntityTypeFilter,
   UserListFilter,
 } from '../types';
@@ -44,6 +45,7 @@ export type DefaultEntityFilters = {
   owners?: EntityOwnerFilter;
   lifecycles?: EntityLifecycleFilter;
   tags?: EntityTagFilter;
+  text?: EntityTextFilter;
 };
 
 export type EntityListContextProps<
