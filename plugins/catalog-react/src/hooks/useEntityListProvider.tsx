@@ -27,7 +27,6 @@ import React, {
 import { useAsyncFn, useDebounce } from 'react-use';
 import { catalogApiRef } from '../api';
 import {
-  EntityFilter,
   EntityKindFilter,
   EntityLifecycleFilter,
   EntityOwnerFilter,
@@ -35,7 +34,8 @@ import {
   EntityTextFilter,
   EntityTypeFilter,
   UserListFilter,
-} from '../types';
+} from '../filters';
+import { EntityFilter } from '../types';
 import { reduceCatalogFilters, reduceEntityFilters } from '../utils';
 
 export type DefaultEntityFilters = {
