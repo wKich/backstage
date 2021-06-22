@@ -13,5 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import '@bigtest/cypress';
 import '@testing-library/cypress/add-commands';
 import './commands';

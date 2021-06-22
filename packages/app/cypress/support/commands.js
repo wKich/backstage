@@ -13,7 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+import { Button } from 'material-ui-interactors';
+
 Cypress.Commands.add('enterAsGuest', () => {
   cy.visit('/');
-  cy.get('button').contains('Enter').click();
+  cy.do(Button('ENTER').click());
 });

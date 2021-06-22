@@ -14,10 +14,27 @@
  * limitations under the License.
  */
 
+import {
+  and,
+  Checkbox,
+  FormControl,
+  Heading,
+  including,
+  Link,
+  List,
+  ListItem,
+  Popover,
+  Select,
+  SelectOption,
+  TextField,
+} from 'material-ui-interactors';
+
 const API_ENDPOINT = 'http://localhost:7000/api/search/query';
 
 describe('SearchPage', () => {
   describe('Given a search context with a term, results, and filter values', () => {
+    beforeEach(() => cy.enterAsGuest());
+
     it('The results are rendered as expected', () => {
       const results = [
         {
@@ -30,7 +47,6 @@ describe('SearchPage', () => {
         },
       ];
 
-      cy.enterAsGuest();
       cy.visit('/search-next', {
         onBeforeLoad(win) {
           cy.stub(win, 'fetch')
@@ -41,15 +57,29 @@ describe('SearchPage', () => {
             });
         },
       });
-      cy.contains('Search');
 
-      cy.contains(results[0].document.title);
-      cy.contains(results[0].document.text);
-      cy.get(`a[href="${results[0].document.location}"]`).should('be.visible');
+      cy.expect(Heading('Search').exists());
+
+      cy.expect(
+        List()
+          .find(
+            ListItem(
+              and(
+                including(results[0].document.title),
+                including(results[0].document.text),
+              ),
+            ),
+          )
+          .exists(),
+      );
+      cy.expect(
+        List()
+          .find(Link({ href: including(results[0].document.location) }))
+          .exists(),
+      );
     });
 
     it('The filters are rendered as expected', () => {
-      cy.enterAsGuest();
       cy.visit(
         '/search-next?filters%5Bkind%5D=Component&filters%5Blifecycle%5D%5B%5D=experimental',
         {
@@ -65,40 +95,24 @@ describe('SearchPage', () => {
           },
         },
       );
-      cy.contains('Search');
+      cy.expect(Heading('Search').exists());
 
       // lifecycle
-      cy.contains('lifecycle');
-
-      cy.contains('experimental');
-      cy.get(
-        '[data-testid="search-checkboxfilter-next"] input[value="experimental"]',
-      ).should('have.attr', 'checked');
-
-      cy.contains('production');
-      cy.get(
-        '[data-testid="search-checkboxfilter-next"] input[value="production"]',
-      ).should('not.have.attr', 'checked');
+      cy.expect(FormControl('Lifecycle').exists());
+      cy.expect(Checkbox('experimental').exists());
+      cy.expect(Checkbox('production').exists());
 
       // kind
-      cy.contains('kind');
-      cy.get(
-        '[data-testid="search-selectfilter-next"] [role="button"][aria-haspopup="listbox"]',
-      ).click();
+      cy.do(Select('Kind').open());
 
-      cy.contains('All');
-      cy.contains('Template');
-      cy.contains('Component');
-
-      cy.get('[role="option"][data-value="Component"]').should(
-        'have.attr',
-        'aria-selected',
-        'true',
+      cy.expect(Popover().find(SelectOption('All')).exists);
+      cy.expect(Popover().find(SelectOption('Template')).exists());
+      cy.expect(
+        Popover().find(SelectOption('Component')).is({ selected: true }),
       );
     });
 
     it('The search bar is rendered as expected', () => {
-      cy.enterAsGuest();
       cy.visit('/search-next?query=backstage', {
         onBeforeLoad(win) {
           cy.stub(win, 'fetch')
@@ -109,13 +123,8 @@ describe('SearchPage', () => {
             });
         },
       });
-      cy.contains('Search');
-
-      cy.get('[data-testid="search-bar-next"] input').should(
-        'have.attr',
-        'value',
-        'backstage',
-      );
+      cy.expect(Heading('Search').exists());
+      cy.expect(TextField('Search in Backstage').has({ value: 'backstage' }));
     });
   });
 });

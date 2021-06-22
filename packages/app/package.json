@@ -59,6 +59,7 @@
   },
   "devDependencies": {
     "@backstage/test-utils": "^0.1.13",
+    "@bigtest/cypress": "^0.0.4",
     "@testing-library/cypress": "^7.0.1",
     "@testing-library/jest-dom": "^5.10.1",
     "@testing-library/react": "^11.2.5",
@@ -71,6 +72,7 @@
     "cross-env": "^7.0.0",
     "cypress": "^7.3.0",
     "eslint-plugin-cypress": "^2.10.3",
+    "material-ui-interactors": "../../../../material-ui-interactors/material-ui-interactors-v4.0.0-alpha.1.tgz",
     "start-server-and-test": "^1.10.11"
   },
   "scripts": {
