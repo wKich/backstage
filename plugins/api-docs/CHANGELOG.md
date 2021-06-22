@@ -1,5 +1,16 @@
 # @backstage/plugin-api-docs
 
+## 0.6.0
+
+### Minor Changes
+
+- d719926d2: **BREAKING CHANGE** Remove deprecated route registrations, meaning that it is no longer enough to only import the plugin in the app and the exported page extension must be used instead.
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/plugin-catalog@0.6.4
+
 ## 0.5.0
 
 ### Minor Changes

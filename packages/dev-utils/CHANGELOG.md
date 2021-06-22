@@ -1,5 +1,11 @@
 # @backstage/dev-utils
 
+## 0.2.0
+
+### Minor Changes
+
+- 76db86c45: Removed support for deprecated registered plugin routes. All routes now need to be added using `addPage` instead.
+
 ## 0.1.17
 
 ### Patch Changes

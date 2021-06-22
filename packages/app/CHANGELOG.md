@@ -1,5 +1,22 @@
 # example-app
 
+## 0.2.34
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/plugin-catalog@0.6.4
+  - @backstage/plugin-explore@0.3.7
+  - @backstage/core-app-api@0.1.3
+  - @backstage/plugin-scaffolder@0.9.9
+  - @backstage/cli@0.7.2
+  - @backstage/plugin-search@0.4.1
+  - @backstage/plugin-api-docs@0.6.0
+  - @backstage/plugin-cost-insights@0.11.0
+  - @backstage/plugin-gcp-projects@0.3.0
+  - @backstage/plugin-newrelic@0.3.0
+  - @backstage/plugin-techdocs@0.9.7
+
 ## 0.2.33
 
 ### Patch Changes
