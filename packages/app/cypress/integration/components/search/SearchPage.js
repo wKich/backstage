@@ -23,7 +23,6 @@ import {
   Link,
   List,
   ListItem,
-  Popover,
   Select,
   SelectOption,
   TextField,
@@ -105,11 +104,9 @@ describe('SearchPage', () => {
       // kind
       cy.do(Select('Kind').open());
 
-      cy.expect(Popover().find(SelectOption('All')).exists);
-      cy.expect(Popover().find(SelectOption('Template')).exists());
-      cy.expect(
-        Popover().find(SelectOption('Component')).is({ selected: true }),
-      );
+      cy.expect(SelectOption('All').exists());
+      cy.expect(SelectOption('Template').exists());
+      cy.expect(SelectOption('Component').is({ selected: true }));
     });
 
     it('The search bar is rendered as expected', () => {
