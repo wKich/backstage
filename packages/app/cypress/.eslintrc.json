@@ -2,10 +2,11 @@
   "plugins": ["cypress"],
   "extends": ["plugin:cypress/recommended"],
   "rules": {
+    "new-cap": "off", // NOTE We need this because interactors are in PascalCase
     "jest/expect-expect": [
       "error",
       {
-        "assertFunctionNames": ["expect", "cy.contains"]
+        "assertFunctionNames": ["expect", "cy.contains", "cy.expect"]
       }
     ],
     "import/no-extraneous-dependencies": [
