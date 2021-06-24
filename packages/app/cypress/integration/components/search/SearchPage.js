@@ -21,7 +21,6 @@ import {
   Heading,
   including,
   Link,
-  List,
   ListItem,
   Select,
   SelectOption,
@@ -35,14 +34,13 @@ describe('SearchPage', () => {
     beforeEach(() => cy.enterAsGuest());
 
     it('The results are rendered as expected', () => {
+      const title = 'backstage';
+      const text = 'Backstage system documentation';
+      const location = '/result/location/path';
       const results = [
         {
           type: 'software-catalog',
-          document: {
-            title: 'backstage',
-            text: 'Backstage system documentation',
-            location: '/result/location/path',
-          },
+          document: { title, text, location },
         },
       ];
 
@@ -59,23 +57,8 @@ describe('SearchPage', () => {
 
       cy.expect(Heading('Search').exists());
 
-      cy.expect(
-        List()
-          .find(
-            ListItem(
-              and(
-                including(results[0].document.title),
-                including(results[0].document.text),
-              ),
-            ),
-          )
-          .exists(),
-      );
-      cy.expect(
-        List()
-          .find(Link({ href: including(results[0].document.location) }))
-          .exists(),
-      );
+      cy.expect(ListItem(and(including(title), including(text))).exists());
+      cy.expect(Link({ href: including(location) }).exists());
     });
 
     it('The filters are rendered as expected', () => {
